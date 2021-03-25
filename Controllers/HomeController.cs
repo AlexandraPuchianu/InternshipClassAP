@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using InternshipClass.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using InternshipClass.Models;
 
 namespace InternshipClass.Controllers
 {
     public class HomeController : Controller
     {
+
+        private InternshipService _internshipService;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _internshipService = new InternshipService();
         }
 
         public IActionResult Index()
@@ -25,7 +28,7 @@ namespace InternshipClass.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            return View(_internshipService);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
