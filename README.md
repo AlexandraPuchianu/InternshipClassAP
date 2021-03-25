@@ -16,7 +16,7 @@ dotnet run
 
 ```
 docker build -t mvc .
-docker run -d -p 8080:80 --name mvc_container mvc
+docker run -d -p 8080:80 --name mvc_container_alex mvc
 ```
 
 to stop container
@@ -43,10 +43,10 @@ heroku container:login
 
 Push container
 ```
-heroku container:push -a borys-internship-class web
+heroku container:push -a internship-class-alex-p web
 ```
 
 Release the container
 ```
-heroku container:release -a borys-internship-class web
+heroku container:release -a internship-class-alex-p web
 ```
