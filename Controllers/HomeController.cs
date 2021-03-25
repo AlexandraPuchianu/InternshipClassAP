@@ -26,6 +26,19 @@ namespace InternshipClass.Controllers
             return View();
         }
 
+        [HttpDelete]
+        public void RemoveMember(int index)
+        {
+            _internshipService.Members.RemoveAt(index);
+        }
+
+        [HttpGet]
+        public string AddMember(string member)
+        {
+            _internshipService.Members.Add(member);
+            return member;
+        }
+
         public IActionResult Privacy()
         {
             return View(_internshipService);
