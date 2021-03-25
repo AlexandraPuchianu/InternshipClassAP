@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace InternshipClass.Models
 {
-    public class InternshipService
+    public class InternshipModel
     {
         private readonly List<string> _members;
 
-        public InternshipService()
+        public InternshipModel()
         {
             _members = new List<string>
             {
