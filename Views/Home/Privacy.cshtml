@@ -1,6 +1,11 @@
 @{
     ViewData["Title"] = "Privacy Policy";
 }
+
+@section scripts {
+    <script type="text/javascript" src="~/js/Index.js"></script>
+}
+
 <h1>@ViewData["Title"]</h1>
 
 <h1>Internship Landpage</h1>
@@ -11,11 +16,11 @@
         var member = Model.Members[i];
 
         <li class="member">
-        @member
-        </li>}
+            @member
+        </li>
+}
 </ul>
 
 <input id="newcomer" title="Name" type="text" />
 <button id="add-btn">Add new comer</button>
-<script src="/js/default.js"></script>
 <p><img src="/Images/Rules.png" width="200" /></p>
