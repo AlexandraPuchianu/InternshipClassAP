@@ -11,7 +11,7 @@ $(document).ready(function () {
                 // Remember string interpolation
                 $("#list").append(`
                     <li class="member">
-                        <span class="name">${data}</span><span class="fa fa-pencil"></span><i class="startEdit fa fa-pencil" data-toggle="modal" data-target="#editClassmate"></i>
+                        <span class="name">${data}</span><span class="delete fa fa-remove"></span><i class="startEdit fa fa-pencil" data-toggle="modal" data-target="#editClassmate"></i>
                     </li>`);
 
                 $("#newcomer").val("");
