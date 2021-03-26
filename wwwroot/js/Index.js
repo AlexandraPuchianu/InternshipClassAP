@@ -1,6 +1,7 @@
 ﻿// This JS file now uses jQuery. Pls see here: https://jquery.com/
 $(document).ready(function () {
     // see https://api.jquery.com/click/
+    
     $("#add-btn").click(function () {
         var newcomerName = $("#newcomer").val();
 
@@ -8,7 +9,10 @@ $(document).ready(function () {
             url: `/Home/AddMember?member=${newcomerName}`,
             success: function (data) {
                 // Remember string interpolation
-                $("#list").append(`<li>${data}</li>`);
+                $("#list").append(`
+                    <li class="member">
+                        <span class="name">${data}</span><span class="fa fa-pencil"></span><i class="delete fa fa-remove"></i>
+                    </li>`);
 
                 $("#newcomer").val("");
             },
@@ -23,7 +27,7 @@ $(document).ready(function () {
         $("#newcomer").val("");
     })
 
-    $(".delete").click(function () {
+    $("#list").on("click", ".delete", function () {
         var targetMemberTag = $(this).parent('li');
         var id = targetMemberTag.attr('memberID');
         $.ajax({
@@ -37,4 +41,5 @@ $(document).ready(function () {
             }
         })
     })
+    
 })
