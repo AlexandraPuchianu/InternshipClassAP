@@ -16,15 +16,20 @@ namespace InternshipClass.Controllers
         private readonly InternshipService intershipService;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, InternshipService intershipService)
+        public HomeController(ILogger<HomeController> logger, InternshipService internshipService)
         {
+            this.intershipService = internshipService;
             _logger = logger;
-            this.intershipService = new InternshipService();
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View(intershipService.GetClass());
         }
 
         [HttpDelete]
@@ -37,11 +42,6 @@ namespace InternshipClass.Controllers
         public string AddMember(string member)
         {
             return intershipService.AddMember(member);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View(intershipService.GetClass());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
