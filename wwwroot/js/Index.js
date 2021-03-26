@@ -48,14 +48,26 @@ $(document).ready(function () {
 
     $("#list").on("click", ".startEdit", function () {
         var targetMemberTag = $(this).closest('li');
-        var index = targetMemberTag.index(targetMemberTag.parent());
+        var index = targetMemberTag.index();
         var currentName = targetMemberTag.find(".name").text();
         $('#editClassmate').attr("memberIndex", index);
         $('#classmateName').val(currentName);
     })
 
     $("#editClassmate").on("click", "#submit", function () {
+        var newName = $('#classmateName').val();
+        var index = $('#editClassmate').attr("memberIndex");
         console.log('submit changes to server');
+        $.ajax({
+            url: `/Home/UpdateMember?index=${index}&name=${newName}`,
+            type: 'PUT',
+            success: function (response) {
+                console.log('MERGEEEE', newName);
+            },
+            error: function (data) {
+                alert(`Failed to remove`);
+            },
+        });
     })
 
     $("#editClassmate").on("click", "#cancel", function () {

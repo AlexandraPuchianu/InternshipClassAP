@@ -21,6 +21,11 @@ namespace InternshipClass.Services
             return member;
         }
 
+        public void UpdateMember(int index, string name)
+        {
+            _internshipModel.Members[index] = name;
+        }
+
         public InternshipModel GetClass()
         {
             return _internshipModel;
