@@ -28,18 +28,25 @@ $(document).ready(function () {
     })
 
     $("#list").on("click", ".delete", function () {
-        var targetMemberTag = $(this).parent('li');
-        var id = targetMemberTag.attr('memberID');
+        var $li = $(this).parent('li');
+        var index = $li.index();
+
+        console.log(`index=${index}`);
+        console.log(`$li=${$li}`);
+
         $.ajax({
-            url: `/Home/RemoveMember/${id}`,
-            type: 'DELETE',
+            method: "DELETE",
+            url: `/Home/RemoveMember?index=${index}`,
             success: function () {
-                targetMemberTag.remove();
+
+
+
+                $li.remove();
             },
-            error: function () {
-                alert(`Failed to delete member with index=${id}`);
-            }
-        })
+            error: function (data) {
+                alert(`Failed to remove`);
+            },
+        });
     })
     
 })
