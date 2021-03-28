@@ -62,12 +62,17 @@ $(document).ready(function () {
             url: `/Home/UpdateMember?index=${index}&name=${newName}`,
             type: 'PUT',
             success: function (response) {
-                console.log('MERGEEEE', newName);
+                console.log('MERGEEEE', response);
             },
             error: function (data) {
                 alert(`Failed to remove`);
             },
+            complete: function () {
+                location.reload();
+            }
+
         });
+
     })
 
     $("#editClassmate").on("click", "#cancel", function () {
