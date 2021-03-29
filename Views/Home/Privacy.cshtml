@@ -9,6 +9,7 @@
 
 @section scripts {
     <script type="text/javascript" src="~/js/Index.js"></script>
+    <script type="text/javascript" src="~/js/populateForecast.js"></script>
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -66,3 +67,8 @@
     Clear
 </button>
 <p><img src="/Images/Rules.png" width="200" /></p>
+<div class="weather">
+    <p>Date: <div id="date">29.03.21</div></p>
+    <p>Temperature: <div id="temperature">10 C</div></p>
+    <p>Summary: <div id="summary">Cool</div></p>
+</div>
