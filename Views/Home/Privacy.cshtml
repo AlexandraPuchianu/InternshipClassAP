@@ -9,7 +9,6 @@
 
 @section scripts {
     <script type="text/javascript" src="~/js/Index.js"></script>
-    <script type="text/javascript" src="~/js/populateForecast.js"></script>
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -41,23 +40,21 @@
     </div>
 }
 
-<div>
-    <h1>Internship Landpage</h1>
-    <p>Here is our classroom</p>
-    <ul id="list">
-        @for (var i = 0; i < Model.Members.Count; i++)
-        {
-            var member = Model.Members[i];
+<h1>Internship Landpage</h1>
+<p>Here is our classroom</p>
+<ul id="list">
+    @for (var i = 0; i < Model.Members.Count; i++)
+    {
+        var member = Model.Members[i];
 
-            <li class="member">
-                <div class="memberInfo">
-                    <span class="name">@member</span><i class="delete fa fa-remove"></i>
-                    <i class="startEdit fa fa-pencil" data-toggle="modal" data-target="#editClassmate"></i>
-                </div>
-            </li>
-        }
-    </ul>
-</div>
+        <li class="member">
+            <div class="memberInfo">
+                <span class="name">@member</span><i class="delete fa fa-remove"></i>
+                <i class="startEdit fa fa-pencil" data-toggle="modal" data-target="#editClassmate"></i>
+            </div>
+        </li>
+    }
+</ul>
 
 <input id="newcomer" title="Name" type="text" />
 <button id="add-btn" class="btn btn-primary">
@@ -69,9 +66,3 @@
     Clear
 </button>
 <p><img src="/Images/Rules.png" width="200" /></p>
-
-<div class="weather">
-    <p>Date: <div id="date">29.03.21</div></p>
-    <p>Temperature: <div id="temperature">10 C</div></p>
-    <p>Summary: <div id="summary">Cool</div></p>
-</div>
