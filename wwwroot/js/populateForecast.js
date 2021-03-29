@@ -1,22 +1,26 @@
-﻿$(document).ready(function () {
-       
+﻿function refreshWeatherForecast() {
+    $(document).ready(function () {
+
         $.ajax({
             url: `/WeatherForecast`,
             success: function (data) {
-                
+
                 let tomorrow = data[0];
                 let tomorrowDate = formatDate(tomorrow.date)
-                
+
                 $('#date').text(tomorrowDate);
                 $('#temperature').text(tomorrow.temperatureC, ' C');
                 $('#summary').text(tomorrow.summary)
             },
             error: function (data) {
-                
+
             },
         });
+    });
+}
 
-    
+
+    setInterval(refreshWeatherForecast, 3000);
 
     function formatDate(jsonDate) {
 
@@ -33,4 +37,3 @@
         let s = join(newDate, a, '-');
         return s;
     }
-})
