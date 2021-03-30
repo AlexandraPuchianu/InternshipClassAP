@@ -29,11 +29,11 @@ docker run -d -p 8080:80 --name mvc_container_alex mvc
 
 to stop container
 ```
-docker stop mvc_container
+docker stop mvc_container_alex
 ```
 to remove container
 ```
-docker rm mvc_container
+docker rm mvc_container_alex
 ```
 
 ## Deploy to heroku
