@@ -16,7 +16,7 @@ namespace InternshipClass.WebAPI.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching",
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
@@ -55,7 +55,7 @@ namespace InternshipClass.WebAPI.Controllers
             return ConvertResponseContentToWeatherForecastList(response.Content);
         }
 
-        private IList<WeatherForecast> ConvertResponseContentToWeatherForecastList(string content)
+        public IList<WeatherForecast> ConvertResponseContentToWeatherForecastList(string content)
         {
             JToken root = JObject.Parse(content);
             JToken testToken = root["daily"];
