@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InternshipClass.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -20,10 +21,12 @@ namespace InternshipClass.WebAPI.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IConfiguration configuration;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            this.configuration = configuration;
         }
 
         /// <summary>
@@ -33,9 +36,9 @@ namespace InternshipClass.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var lat = 45.75;
-            var lon = 25.3333;
-            var apiKey = "5c22adf85237e02133761e817996de14";
+            var lat = double.Parse(configuration["WeatherForecast:Latitude"]);
+            var lon = double.Parse(configuration["WeatherForecast:Longitude"]);
+            var apiKey = configuration["WeatherForecast:ApiKey"];
             var weatherForecasts = FetchWeatherForecasts(lat, lon, apiKey);
 
             return weatherForecasts.GetRange(1, 5);
