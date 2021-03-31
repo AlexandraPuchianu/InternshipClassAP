@@ -14,7 +14,7 @@ namespace InternshipClass.Tests
 
         public DayTests()
         {
-             configuration = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
+             configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         }
         [Fact]
         public void CheckEpochConversion()
@@ -38,14 +38,12 @@ namespace InternshipClass.Tests
         {
             // Assume
             //https://api.openweathermap.org/data/2.5/onecall?lat=45.75&lon=25.3333&exclude=hourly,minutely&appid=5c22adf85237e02133761e817996de14
-            var lat = 45.75;
-            var lon = 25.3333;
-            var apiKey = "5c22adf85237e02133761e817996de14";
+            
             Microsoft.Extensions.Logging.ILogger<WeatherForecastController> nullLogger = new NullLogger<WeatherForecastController>();
             var weatherForecastController = new WeatherForecastController(nullLogger, configuration);
 
             // Act
-            var weatherForecasts = weatherForecastController.FetchWeatherForecasts(lat, lon, apiKey);
+            var weatherForecasts = weatherForecastController.FetchWeatherForecasts();
             
 
             // Assert
