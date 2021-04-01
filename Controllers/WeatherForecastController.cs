@@ -66,6 +66,7 @@ namespace InternshipClass.WebAPI.Controllers
                 forecast.Date = DateTimeConverter.ConvertEpochToDateTime(long.Parse(token["dt"].ToString()));
                 forecast.TemperatureK = double.Parse(token["temp"]["day"].ToString());
                 forecast.Summary = token["weather"][0]["description"].ToString();
+
                 forecasts.Add(forecast);
             }
 

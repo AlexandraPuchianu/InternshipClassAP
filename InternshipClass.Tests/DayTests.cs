@@ -8,14 +8,15 @@ using Xunit;
 
 namespace InternshipClass.Tests
 {
-    public class DayTests
+    public class DayTest
     {
-        private IConfiguration configuration;
+        private IConfigurationRoot configuration;
 
-        public DayTests()
+        public DayTest()
         {
-             configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         }
+
         [Fact]
         public void CheckEpochConversion()
         {
