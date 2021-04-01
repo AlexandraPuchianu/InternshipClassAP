@@ -4,7 +4,7 @@ using InternshipClass.WebAPI.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
-using System.IO;
+using SR = System.IO.StreamReader;
 using Xunit;
 
 namespace InternshipClass.Tests
@@ -55,8 +55,11 @@ namespace InternshipClass.Tests
         [Fact]
         public void ConvertWeatherJsonToWeatherForecast()
         {
+            string streamReaderLines = GetStreamLines();
+
             // Assume
-            string content = File.ReadAllText("weatherForecast.json");
+
+            string content = streamReader;
             WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
             // Act
             var weatherForecasts = weatherForecastController.ConvertResponseContentToWeatherForecastList(content);
@@ -71,6 +74,23 @@ namespace InternshipClass.Tests
             Microsoft.Extensions.Logging.ILogger<WeatherForecastController> nullLogger = new NullLogger<WeatherForecastController>();
             var weatherForecastController = new WeatherForecastController(nullLogger, configuration);
             return weatherForecastController;
+        }
+
+        private string GetStreamLines()
+        {
+            var assembly = this.GetType().Assembly;
+
+            using var stream = assembly.GetManifestResourceStream("InternshipClass.Tests.weatherForecast.json");
+
+            SR streamReader = new SR(stream);
+            var streamReaderLines = "";
+            while (!streamReader.EndOfStream) 
+            {
+                streamReaderLines += streamReader.ReadLine();
+            }
+
+            return streamReaderLines;
+            
         }
 
     }
