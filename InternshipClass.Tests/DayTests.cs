@@ -55,12 +55,11 @@ namespace InternshipClass.Tests
         [Fact]
         public void ConvertWeatherJsonToWeatherForecast()
         {
-            string streamReaderLines = GetStreamLines();
 
             // Assume
-
-            string content = streamReader;
+            string content = GetStreamLines();
             WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
+
             // Act
             var weatherForecasts = weatherForecastController.ConvertResponseContentToWeatherForecastList(content);
             WeatherForecast weatherForecastForTomorrow = weatherForecasts[1];
