@@ -10,12 +10,6 @@ namespace InternshipClass.Services
     public class InternshipService
     {
         private readonly InternshipModel _internshipModel = new ();
-        private ApplicationDbContext db;
-
-        public InternshipService(ApplicationDbContext db)
-        {
-            this.db = db;
-        }
 
         public void RemoveMember(int index)
         {
