@@ -27,7 +27,7 @@ namespace InternshipClass.Controllers
 
         public IActionResult Index()
         {
-            var interns = db.Interns;
+            var interns = db.Interns.ToList();
             return View(interns);
         }
 
