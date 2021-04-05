@@ -57,6 +57,14 @@ namespace InternshipClass.WebAPI.Controllers
 
         public List<WeatherForecast> ConvertResponseContentToWeatherForecastList(string content)
         {
+            // TODO: content sometimes is empty string
+            if (content == string.Empty)
+            {
+                Console.WriteLine("Exception: The Weather Forecast content is empty");
+                return new List<WeatherForecast>();
+            }
+            else
+            {
             JToken root = JObject.Parse(content);
             JToken testToken = root["daily"];
             List<WeatherForecast> forecasts = new List<WeatherForecast>();
@@ -71,6 +79,7 @@ namespace InternshipClass.WebAPI.Controllers
             }
 
             return forecasts;
+            }
         }
     }
 }
