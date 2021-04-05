@@ -58,7 +58,7 @@ $(document).ready(function () {
         var index = $('#editClassmate').attr("memberIndex");
         console.log('submit changes to server');
         $.ajax({
-            url: `/Home/UpdateMember?index=${index}&name=${newName}`,
+            url: `/Home/UpdateMember?index=${index}&newName=${newName}`,
             type: 'PUT',
             success: function (response) {
                 console.log('MERGEEEE', response);

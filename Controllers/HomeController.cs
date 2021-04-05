@@ -26,8 +26,7 @@ namespace InternshipClass.Controllers
 
         public IActionResult Index()
         {
-            var interns = db.Interns.ToList();
-            return View(interns);
+            return View(intershipService.GetMembers());
         }
 
         public IActionResult Privacy()
@@ -56,11 +55,12 @@ namespace InternshipClass.Controllers
         }
 
         [HttpPut]
-        public void UpdateMember(int id, string newName)
+        public void UpdateMember(int index, string newName)
         {
-            Intern intern = new Intern();
-            intern.Id = id;
+            var internsList = intershipService.GetMembers();
+            Intern intern = internsList[index];
             intern.Name = newName;
+            intern.DateOfJoin = DateTime.Now;
             intershipService.UpdateMember(intern);
         }
 
