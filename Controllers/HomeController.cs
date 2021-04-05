@@ -13,12 +13,11 @@ namespace InternshipClass.Controllers
 {
     public class HomeController : Controller
     {
-
-        private readonly InternshipService intershipService;
+        private readonly IInternshipService intershipService;
         private readonly ILogger<HomeController> _logger;
         private readonly InternDbContext db;
 
-        public HomeController(ILogger<HomeController> logger, InternshipService internshipService, InternDbContext db)
+        public HomeController(ILogger<HomeController> logger, IInternshipService internshipService, InternDbContext db)
         {
             this.intershipService = internshipService;
             _logger = logger;
@@ -33,7 +32,6 @@ namespace InternshipClass.Controllers
 
         public IActionResult Privacy()
         {
-            return View(intershipService.GetClass());
             var interns = intershipService.GetMembers();
             return View(interns);
         }
@@ -45,10 +43,12 @@ namespace InternshipClass.Controllers
         }
 
         [HttpGet]
-        public int AddMember(string memberName)
+        public Intern AddMember(string memberName)
         {
             Intern intern = new Intern();
             intern.Name = memberName;
+            intern.DateOfJoin = DateTime.Now;
+
             return intershipService.AddMember(intern);
         }
 

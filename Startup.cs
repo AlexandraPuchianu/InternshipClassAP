@@ -40,7 +40,7 @@ namespace InternshipClass
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddControllersWithViews();
-            services.AddSingleton(typeof(InternshipService));
+            services.AddScoped<IInternshipService, InternshipDbService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InternshipClass.WebAPI", Version = "v1" });
@@ -65,9 +65,11 @@ namespace InternshipClass
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

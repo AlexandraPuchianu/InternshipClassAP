@@ -1,13 +1,11 @@
-﻿using InternshipClass.Data;
-using InternshipClass.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using InternshipClass.Models;
 
 namespace InternshipClass.Services
 {
-    public class InternshipService
+    public class InternshipService : IInternshipService
     {
         private readonly InternshipModel _internshipModel = new ();
 
@@ -17,16 +15,16 @@ namespace InternshipClass.Services
             _internshipModel.Members.Remove(itemToBeDeleted);
         }
 
-        public int AddMember(Intern intern)
+        public Intern AddMember(Intern intern)
         {
             var maxId = _internshipModel.Members.Max(_ => _.Id);
             var newId = maxId + 1;
-            
-            intern.Id = maxId + 1;
+
+            intern.Id = newId;
             intern.DateOfJoin = DateTime.Now;
-            
+
             _internshipModel.Members.Add(intern);
-            return newId;
+            return intern;
         }
 
         public void UpdateMember(Intern intern)
