@@ -34,6 +34,8 @@ namespace InternshipClass.Controllers
         public IActionResult Privacy()
         {
             return View(intershipService.GetClass());
+            var interns = intershipService.GetMembers();
+            return View(interns);
         }
 
         [HttpDelete]

@@ -35,9 +35,9 @@ namespace InternshipClass.Services
             itemToBeUpdate.Name = intern.Name;
         }
 
-        public InternshipModel GetClass()
+        public IList<Intern> GetMembers()
         {
-            return _internshipModel;
+            return _internshipModel.Members;
         }
     }
 }
