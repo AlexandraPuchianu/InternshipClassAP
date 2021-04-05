@@ -2,7 +2,7 @@
 
 namespace InternshipClass.Data.Migrations
 {
-    public partial class addInterns : Migration
+    public partial class AddInterns : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

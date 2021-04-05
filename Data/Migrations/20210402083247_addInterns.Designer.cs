@@ -11,7 +11,7 @@ namespace InternshipClass.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210402083247_addInterns")]
-    partial class addInterns
+    partial class AddInterns
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
