@@ -11,20 +11,28 @@ namespace InternshipClass.Services
     {
         private readonly InternshipModel _internshipModel = new ();
 
-        public void RemoveMember(int index)
+        public void RemoveMember(int id)
         {
-            _internshipModel.Members.RemoveAt(index);
+            var itemToBeDeleted = _internshipModel.Members.Single(_ => _.Id == id);
+            _internshipModel.Members.Remove(itemToBeDeleted);
         }
 
         public int AddMember(Intern intern)
         {
+            var maxId = _internshipModel.Members.Max(_ => _.Id);
+            var newId = maxId + 1;
+            
+            intern.Id = maxId + 1;
+            intern.DateOfJoin = DateTime.Now;
+            
             _internshipModel.Members.Add(intern);
-            return intern.Id;
+            return newId;
         }
 
         public void UpdateMember(Intern intern)
         {
-            //_internshipModel.Members[];
+            var itemToBeUpdate = _internshipModel.Members.SingleOrDefault(_ => _.Id == intern.Id);
+            itemToBeUpdate.Name = intern.Name;
         }
 
         public InternshipModel GetClass()
