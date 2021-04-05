@@ -39,7 +39,10 @@ namespace InternshipClass.Controllers
         [HttpDelete]
         public void RemoveMember(int index)
         {
-            intershipService.RemoveMember(index);
+            var internsList = intershipService.GetMembers();
+            Intern intern = internsList[index];
+
+            intershipService.RemoveMember(intern.Id);
         }
 
         [HttpGet]
