@@ -7,19 +7,20 @@ namespace InternshipClass.Models
 {
     public class InternshipModel
     {
-        private readonly List<string> _members;
+        private readonly List<Intern> _members;
 
         public InternshipModel()
         {
-            _members = new List<string>
+            _members = new List<Intern>
             {
-                "Borys",
-                "Liova",
-                "Orest",
+                new Intern { Name = "Borys", DateOfJoin = DateTime.Parse("2021-04-01") },
+                new Intern { Name = "Liova", DateOfJoin = DateTime.Parse("2021-04-01") },
+                new Intern { Name = "Orest", DateOfJoin = DateTime.Parse("2021-03-31") },
             };
+
         }
 
-        public IList<string> Members
+        public IList<Intern> Members
         {
             get { return _members; }
         }

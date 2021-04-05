@@ -16,15 +16,15 @@ namespace InternshipClass.Services
             _internshipModel.Members.RemoveAt(index);
         }
 
-        public string AddMember(string member)
+        public int AddMember(Intern intern)
         {
-            _internshipModel.Members.Add(member);
-            return member;
+            _internshipModel.Members.Add(intern);
+            return intern.Id;
         }
 
-        public void UpdateMember(int index, string name)
+        public void UpdateMember(Intern intern)
         {
-            _internshipModel.Members[index] = name;
+            //_internshipModel.Members[];
         }
 
         public InternshipModel GetClass()
