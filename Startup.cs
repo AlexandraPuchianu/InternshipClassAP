@@ -42,6 +42,7 @@ namespace InternshipClass
 
             services.AddControllersWithViews();
             services.AddScoped<IInternshipService, InternshipDbService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InternshipClass.WebAPI", Version = "v1" });
@@ -53,6 +54,7 @@ namespace InternshipClass
             });
 
             services.AddSignalR();
+            services.AddSingleton<MessageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

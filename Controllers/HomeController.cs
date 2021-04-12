@@ -15,13 +15,13 @@ namespace InternshipClass.Controllers
     {
         private readonly IInternshipService intershipService;
         private readonly ILogger<HomeController> _logger;
-        private readonly InternDbContext db;
+        private readonly MessageService messageService;
 
-        public HomeController(ILogger<HomeController> logger, IInternshipService internshipService, InternDbContext db)
+        public HomeController(ILogger<HomeController> logger, IInternshipService internshipService, MessageService messageService)
         {
             this.intershipService = internshipService;
             _logger = logger;
-            this.db = db;
+            this.messageService = messageService;
         }
 
         public IActionResult Index()
@@ -37,7 +37,7 @@ namespace InternshipClass.Controllers
 
         public IActionResult Chat()
         {
-            return View();
+            return View(messageService.GetAllMessages());
         }
 
         [HttpDelete]
