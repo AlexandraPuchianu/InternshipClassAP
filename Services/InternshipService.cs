@@ -37,5 +37,10 @@ namespace InternshipClass.Services
         {
             return _internshipModel.Members;
         }
+
+        public void SubscribeToAddMember(IAddMemberSubscriber subscribers)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

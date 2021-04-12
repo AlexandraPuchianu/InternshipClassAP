@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InternshipClass.Hubs;
 using InternshipClass.Models;
 
 namespace InternshipClass.Services
@@ -15,5 +16,6 @@ namespace InternshipClass.Services
         void RemoveMember(int id);
 
         void UpdateMember(Intern intern);
+        void SubscribeToAddMember(IAddMemberSubscriber messageHub);
     }
 }
