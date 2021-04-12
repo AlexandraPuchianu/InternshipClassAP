@@ -35,6 +35,11 @@ namespace InternshipClass.Controllers
             return View(interns);
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
         [HttpDelete]
         public void RemoveMember(int index)
         {
