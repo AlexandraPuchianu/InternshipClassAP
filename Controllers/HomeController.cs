@@ -4,9 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using InternshipClass.Data;
+using InternshipClass.Hubs;
 using InternshipClass.Models;
 using InternshipClass.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
 namespace InternshipClass.Controllers
@@ -16,12 +18,14 @@ namespace InternshipClass.Controllers
         private readonly IInternshipService intershipService;
         private readonly ILogger<HomeController> _logger;
         private readonly MessageService messageService;
+        private readonly IHubContext<MessageHub> hubContext;
 
-        public HomeController(ILogger<HomeController> logger, IInternshipService internshipService, MessageService messageService)
+        public HomeController(ILogger<HomeController> logger, IInternshipService internshipService, IHubContext<MessageHub> hubContext, MessageService messageService)
         {
             this.intershipService = internshipService;
             _logger = logger;
             this.messageService = messageService;
+            this.hubContext = hubContext;
         }
 
         public IActionResult Index()
@@ -48,7 +52,7 @@ namespace InternshipClass.Controllers
 
             intershipService.RemoveMember(intern.Id);
         }
-
+        //Change to post
         [HttpGet]
         public Intern AddMember(string memberName)
         {
@@ -56,7 +60,9 @@ namespace InternshipClass.Controllers
             intern.Name = memberName;
             intern.DateOfJoin = DateTime.Now;
 
-            return intershipService.AddMember(intern);
+            var newMember = intershipService.AddMember(intern);
+            hubContext.Clients.All.SendAsync("AddMember", newMember.Name, newMember.Id);
+            return newMember;
         }
 
         [HttpPut]
