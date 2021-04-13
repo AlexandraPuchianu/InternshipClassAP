@@ -16,6 +16,5 @@ namespace InternshipClass.Services
         void RemoveMember(int id);
 
         void UpdateMember(Intern intern);
-        void SubscribeToAddMember(IAddMemberSubscriber messageHub);
     }
 }

@@ -11,13 +11,10 @@ namespace InternshipClass.Hubs
     public class MessageHub : Hub, IAddMemberSubscriber
     {
         private readonly MessageService messageService;
-        private readonly IInternshipService internshipService;
 
-        public MessageHub(MessageService messageService, IInternshipService internshipService)
+        public MessageHub(MessageService messageService)
         {
             this.messageService = messageService;
-            this.internshipService = internshipService;
-            internshipService.SubscribeToAddMember(this);
         }
 
         public async void OnAddMember(Intern member)
