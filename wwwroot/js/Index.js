@@ -5,8 +5,11 @@ $(document).ready(function () {
     $("#add-btn").click(function () {
         var newcomerName = $("#newcomer").val();
         $.ajax({
-            
-            url: `/Home/AddMember?memberName=${newcomerName}`,
+
+            contentType: 'application/json',
+            data: JSON.stringify({ "Name": `${newcomerName}` }),
+            method: "POST",
+            url: '/api/Internship/',
             success: function (data) {
                 $("#newcomer").val("");
             },
@@ -23,14 +26,12 @@ $(document).ready(function () {
 
     $("#list").on("click", ".delete", function () {
         var $li = $(this).closest('li');
-        var index = $li.index();
+        var id = $li.attr('memberId');
 
-        console.log(`index=${index}`);
-        console.log(`$li=${$li}`);
 
         $.ajax({
             method: "DELETE",
-            url: `/Home/RemoveMember?index=${index}`,
+            url: `/api/Internship/${id}`,
             success: function () {
                 $li.remove();
             },
@@ -42,19 +43,25 @@ $(document).ready(function () {
 
     $("#list").on("click", ".startEdit", function () {
         var targetMemberTag = $(this).closest('li');
+        var memberId = targetMemberTag.attr('memberId');
         var index = targetMemberTag.index();
         var currentName = targetMemberTag.find(".name").text();
+        $('#editClassmate').attr("memberId", memberId);
         $('#editClassmate').attr("memberIndex", index);
         $('#classmateName').val(currentName);
     })
 
     $("#editClassmate").on("click", "#submit", function () {
         var newName = $('#classmateName').val();
+        var id = $('#editClassmate').attr("memberId");
         var index = $('#editClassmate').attr("memberIndex");
+
         console.log('submit changes to server');
         $.ajax({
-            url: `/Home/UpdateMember?index=${index}&newName=${newName}`,
-            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({ "Name": `${newName}` }),
+            method: "PUT",
+            url: `/api/Internship/${id}`,
             success: function (response) {
                 console.log('MERGEEEE', response);
             },
