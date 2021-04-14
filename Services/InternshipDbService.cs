@@ -39,6 +39,7 @@ namespace InternshipClass.Services
         public void RemoveMember(int id)
         {
             var intern = GetMemberById(id);
+            if (intern == null) return;
             db.Remove<Intern>(intern);
             db.SaveChanges();
         }
