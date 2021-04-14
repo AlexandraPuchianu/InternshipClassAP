@@ -11,7 +11,7 @@ connection.on("AddMember", function (name, id) {
 });
 
 connection.on("RemoveMember", function (id) {
-    var $li = $(`li.member[memberid=${id}]`)
+    var $li = $(`li.member[memberId=${id}]`)
     $li.remove();
 });
 
