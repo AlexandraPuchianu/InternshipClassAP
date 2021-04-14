@@ -44,37 +44,6 @@ namespace InternshipClass.Controllers
             return View(messageService.GetAllMessages());
         }
 
-        [HttpDelete]
-        public void RemoveMember(int index)
-        {
-            var internsList = intershipService.GetMembers();
-            Intern intern = internsList[index];
-
-            intershipService.RemoveMember(intern.Id);
-        }
-        //Change to post
-        [HttpGet]
-        public Intern AddMember(string memberName)
-        {
-            Intern intern = new Intern();
-            intern.Name = memberName;
-            intern.DateOfJoin = DateTime.Now;
-
-            var newMember = intershipService.AddMember(intern);
-            hubContext.Clients.All.SendAsync("AddMember", newMember.Name, newMember.Id);
-            return newMember;
-        }
-
-        [HttpPut]
-        public void UpdateMember(int index, string newName)
-        {
-            var internsList = intershipService.GetMembers();
-            Intern intern = internsList[index];
-            intern.Name = newName;
-            intern.DateOfJoin = DateTime.Now;
-            intershipService.UpdateMember(intern);
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
