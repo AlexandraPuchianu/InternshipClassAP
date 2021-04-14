@@ -59,9 +59,6 @@ $(document).ready(function () {
             data: JSON.stringify({ "Name": `${newName}` }),
             method: "PUT",
             url: `/api/Internship/${id}`,
-            success: function (response) {
-                console.log('MERGEEEE', response);
-            },
             error: function (data) {
                 alert(`Failed to remove`);
             },
