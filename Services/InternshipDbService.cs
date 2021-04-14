@@ -30,16 +30,29 @@ namespace InternshipClass.Services
             return interns;
         }
 
+        public Intern GetMemberById(int id)
+        {
+            var member = db.Find<Intern>(id);
+            return member;
+        }
+
         public void RemoveMember(int id)
         {
-            var intern = db.Find<Intern>(id);
+            var intern = GetMemberById(id);
             db.Remove<Intern>(intern);
             db.SaveChanges();
         }
 
         public void UpdateMember(Intern intern)
         {
-            db.Interns.Update(intern);
+            var itemToBeUpdate = GetMemberById(intern.Id);
+            itemToBeUpdate.Name = intern.Name;
+            if (intern.DateOfJoin > DateTime.MinValue)
+            {
+                itemToBeUpdate.DateOfJoin = intern.DateOfJoin;
+            }
+
+            db.Interns.Update(itemToBeUpdate);
             db.SaveChanges();
         }
     }

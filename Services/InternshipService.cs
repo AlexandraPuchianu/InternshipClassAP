@@ -29,7 +29,7 @@ namespace InternshipClass.Services
 
         public void UpdateMember(Intern intern)
         {
-            var itemToBeUpdate = _internshipModel.Members.SingleOrDefault(_ => _.Id == intern.Id);
+            var itemToBeUpdate = GetMemberById(intern.Id);
             itemToBeUpdate.Name = intern.Name;
         }
 
@@ -38,9 +38,10 @@ namespace InternshipClass.Services
             return _internshipModel.Members;
         }
 
-        public void SubscribeToAddMember(IAddMemberSubscriber subscribers)
+        public Intern GetMemberById(int id)
         {
-            throw new NotImplementedException();
+            var member = _internshipModel.Members.Single(_ => _.Id == id);
+            return member;
         }
     }
 }
