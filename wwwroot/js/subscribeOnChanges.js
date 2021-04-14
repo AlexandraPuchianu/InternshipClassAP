@@ -10,6 +10,11 @@ connection.on("AddMember", function (name, id) {
 	</li>`);
 });
 
+connection.on("RemoveMember", function (id) {
+    var $li = $(`li.member[memberid=${id}]`)
+    $li.remove();
+});
+
 connection.start().then(function () {
     console.log("Connection established");
 }).catch(function (err) {

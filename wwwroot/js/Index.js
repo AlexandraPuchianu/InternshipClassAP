@@ -32,9 +32,6 @@ $(document).ready(function () {
         $.ajax({
             method: "DELETE",
             url: `/api/Internship/${id}`,
-            success: function () {
-                $li.remove();
-            },
             error: function (data) {
                 alert(`Failed to remove`);
             },
