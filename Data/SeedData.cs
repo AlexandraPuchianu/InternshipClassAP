@@ -19,9 +19,9 @@ namespace InternshipClass.Models
 
             var interns = new Intern[]
             {
-                new Intern { Id = 1, Name = "Borys", DateOfJoin = DateTime.Parse("2021-04-01") },
-                new Intern { Id = 2, Name = "Liova", DateOfJoin = DateTime.Parse("2021-04-01") },
-                new Intern { Id = 3, Name = "Orest", DateOfJoin = DateTime.Parse("2021-03-31") },
+                new Intern { Name = "Borys", DateOfJoin = DateTime.Parse("2021-04-01") },
+                new Intern { Name = "Liova", DateOfJoin = DateTime.Parse("2021-04-01") },
+                new Intern { Name = "Orest", DateOfJoin = DateTime.Parse("2021-03-31") },
             };
 
             context.Interns.AddRange(interns);
