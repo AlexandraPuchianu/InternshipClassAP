@@ -56,7 +56,7 @@ namespace InternshipClass.Tests
         {
 
             // Assume
-            string content = GetStreamLines();
+            string content = GetStreamLines("weatherForecast");
             WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
 
             // Act
@@ -67,18 +67,25 @@ namespace InternshipClass.Tests
             Assert.Equal(285.39, weatherForecastForTomorrow.TemperatureK);
         }
 
-        private WeatherForecastController InstantiateWeatherForecastController()
-        {
-            Microsoft.Extensions.Logging.ILogger<WeatherForecastController> nullLogger = new NullLogger<WeatherForecastController>();
-            var weatherForecastController = new WeatherForecastController(nullLogger, configuration);
-            return weatherForecastController;
-        }
 
-        private string GetStreamLines()
+        [Fact]
+        public void ShouldHandleJsonErrorFromOpenWeatherAPI()
+        {
+            // Assume
+            string content = GetStreamLines("weatherForecast_Exception");
+            WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
+
+            // Act
+            
+            // Assert
+            Assert.Throws<Exception>(() => weatherForecastController.ConvertResponseContentToWeatherForecastList(content));
+
+        }
+        private string GetStreamLines(string resourceName)
         {
             var assembly = this.GetType().Assembly;
 
-            using var stream = assembly.GetManifestResourceStream("InternshipClass.Tests.weatherForecast.json");
+            using var stream = assembly.GetManifestResourceStream($"InternshipClass.Tests.{resourceName}.json");
 
             SR streamReader = new SR(stream);
             var streamReaderLines = "";
@@ -90,6 +97,14 @@ namespace InternshipClass.Tests
             return streamReaderLines;
             
         }
+        
+        private WeatherForecastController InstantiateWeatherForecastController()
+        {
+            Microsoft.Extensions.Logging.ILogger<WeatherForecastController> nullLogger = new NullLogger<WeatherForecastController>();
+            var weatherForecastController = new WeatherForecastController(nullLogger, configuration);
+            return weatherForecastController;
+        }
+
 
     }
 }
