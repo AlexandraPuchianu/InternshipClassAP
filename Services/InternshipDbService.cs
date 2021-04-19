@@ -33,6 +33,7 @@ namespace InternshipClass.Services
         public Intern GetMemberById(int id)
         {
             var member = db.Find<Intern>(id);
+            db.Entry(member).Reference(_ => _.Location).Load();
             return member;
         }
 

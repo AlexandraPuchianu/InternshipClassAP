@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace InternshipClass.Models
@@ -17,6 +18,7 @@ namespace InternshipClass.Models
 
         public double Longitude { get; set; }
 
+        [JsonIgnore]
         public List<Intern> LocalInterns { get; set; }
     }
 }
