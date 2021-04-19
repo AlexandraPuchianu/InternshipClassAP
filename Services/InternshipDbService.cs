@@ -27,20 +27,10 @@ namespace InternshipClass.Services
             {
                 member.Location = GetDefaultLocation();
             }
+
             db.Interns.AddRange(member);
             db.SaveChanges();
             return member;
-        }
-
-        private Location GetDefaultLocation()
-        {
-            if (defaultLocation == null)
-            {
-                var defaultLocationName = configuration["DefaultLocation"];
-                defaultLocation = db.Locations.Where(_ => _.Name == defaultLocationName).OrderBy(_ => _.Id).FirstOrDefault();
-            }
-
-            return defaultLocation;
         }
 
         public IList<Intern> GetMembers()
@@ -75,6 +65,17 @@ namespace InternshipClass.Services
 
             db.Interns.Update(itemToBeUpdate);
             db.SaveChanges();
+        }
+
+        private Location GetDefaultLocation()
+        {
+            if (defaultLocation == null)
+            {
+                var defaultLocationName = configuration["DefaultLocation"];
+                defaultLocation = db.Locations.Where(_ => _.Name == defaultLocationName).OrderBy(_ => _.Id).FirstOrDefault();
+            }
+
+            return defaultLocation;
         }
     }
 }
