@@ -43,6 +43,7 @@ namespace InternshipClass.Services
         {
             var member = db.Find<Intern>(id);
             db.Entry(member).Reference(_ => _.Location).Load();
+            db.Entry(member).Collection(_ => _.Projects).Load();
             return member;
         }
 
