@@ -19,7 +19,6 @@
 	  <EmbeddedResource Remove="out\**" />
 	  <None Remove="*.log" />
 	  <None Remove="InternshipClass.Tests\**" />
-    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
     <None Remove="out\**" />
   </ItemGroup>
   
