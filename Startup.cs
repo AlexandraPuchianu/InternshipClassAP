@@ -61,6 +61,13 @@ namespace InternshipClass
             services.AddScoped<IInternshipService, InternshipDbService>();
             services.AddScoped<EmployeeDbService>();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InternshipClass.WebAPI", Version = "v1" });
@@ -97,6 +104,7 @@ namespace InternshipClass
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 
