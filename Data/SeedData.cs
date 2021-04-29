@@ -30,8 +30,8 @@ namespace InternshipClass.Models
             {
                 var employees = new Employee[]
                 {
-                    new Employee { Id = 1, FirstName = "Alexandra", LastName = "Puchianu", Email = "alexandraPuchianu@yahoo.com", Gender = "Female", Birthdate = DateTime.Parse("1999-03-03"), Picture = "pic.jpg" },
-                    new Employee { Id = 2, FirstName = "Georgiana", LastName = "Popa", Email = "popaGeorgiana@yahoo.com", Gender = "Female", Birthdate = DateTime.Parse("1999-01-10"), Picture = "pic.jpg" },
+                    new Employee { FirstName = "Alexandra", LastName = "Puchianu", Email = "alexandraPuchianu@yahoo.com", Gender = "Female", Birthdate = DateTime.Parse("1999-03-03"), Picture = "pic.jpg" },
+                    new Employee { FirstName = "Georgiana", LastName = "Popa", Email = "popaGeorgiana@yahoo.com", Gender = "Female", Birthdate = DateTime.Parse("1999-01-10"), Picture = "pic.jpg" },
                 };
 
                 context.Employees.AddRange(employees);
